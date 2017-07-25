@@ -2,19 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Bangazon.Data;
-using Bangazon.Models;
+using BangazonAPI.Data;
+using BangazonAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bangazon.Controllers
+namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class ChildController : Controller
+    public class CustomerController : Controller
     {
         private BangazonAPIContext _context;
-        public ChildController(BangazonAPIContext ctx)
+        public CustomerController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
@@ -24,19 +24,19 @@ namespace Bangazon.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IQueryable<object> children = from child in _context.Child select child;
+            IQueryable<object> AllCustomers = from customer in _context.Customers select customer;
 
-            if (children == null)
+            if (AllCustomers == null)
             {
                 return NotFound();
             }
 
-            return Ok(children);
+            return Ok(AllCustomers);
 
         }
 
         // GET api/values/5
-        // This is a hard coded example of retrieving the child with a specific name 
+        // This is a hard coded example of retrieving the customer with a specific name 
         [HttpGet("{id}")]
         public string Get(int id)
         {
@@ -45,14 +45,14 @@ namespace Bangazon.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Child child)
+        public IActionResult Post([FromBody] Customer customer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Child.Add(child);
+            _context.Customers.Add(customer);
             
             try
             {
@@ -60,7 +60,7 @@ namespace Bangazon.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ChildExists(child.ChildId))
+                if (CustomerExists(customer.CustomerId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -70,29 +70,29 @@ namespace Bangazon.Controllers
                 }
             }
 
-            return CreatedAtRoute("GetToy", new { id = child.ChildId }, child);
+            return CreatedAtRoute("GetCustomer", new { id = customer.CustomerId }, customer);
         }
 
-        private bool ChildExists(int kidId)
+        private bool CustomerExists(int custId)
         {
-          return _context.Child.Count(e => e.ChildId == kidId) > 0;
+          return _context.Customers.Count(e => e.CustomerId == custId) > 0;
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Child child)
+        public IActionResult Put(int id, [FromBody] Customer customer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != child.ChildId)
+            if (id != customer.CustomerId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(child).State = EntityState.Modified;
+            _context.Entry(customer).State = EntityState.Modified;
 
             try
             {
@@ -100,7 +100,7 @@ namespace Bangazon.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ChildExists(id))
+                if (!CustomerExists(id))
                 {
                     return NotFound();
                 }
@@ -122,16 +122,16 @@ namespace Bangazon.Controllers
                 return BadRequest(ModelState);
             }
 
-            Child child = _context.Child.Single(m => m.ChildId == id);
-            if (child == null)
+            Customer customer = _context.Customers.Single(m => m.CustomerId == id);
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            _context.Child.Remove(child);
+            _context.Customers.Remove(customer);
             _context.SaveChanges();
 
-            return Ok(child);
+            return Ok(customer);
         }
     }
 }
