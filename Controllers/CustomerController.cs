@@ -37,7 +37,7 @@ namespace BangazonAPI.Controllers
 
         // GET api/values/5
         // This is a hard coded example of retrieving the customer with a specific name 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetCustomer")]
         public string Get(int id)
         {
             return "value";
