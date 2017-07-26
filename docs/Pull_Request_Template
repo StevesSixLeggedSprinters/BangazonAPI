@@ -22,9 +22,10 @@ db migrations, etc.
 Outline the steps to test or reproduce the PR here.
 
 ```sh
-git pull --prune
-git checkout <feature_branch>
-bundle; script/server
+git fetch --a
+git branch -avv
+git checkout <branch-name>
+git pull origin <branch-name>
 ```
 
 1. 
