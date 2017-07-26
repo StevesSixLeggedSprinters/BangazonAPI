@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BangazonAPI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
-namespace Bangazon
+namespace BangazonAPI
 {
     public class Startup
     {
@@ -16,7 +18,7 @@ namespace Bangazon
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -29,6 +31,11 @@ namespace Bangazon
         {
             // Add framework services.
             services.AddMvc();
+
+            string path = System.Environment.GetEnvironmentVariable("BANGAZON_DB");
+            var connection = $"Filename={path}";
+            Console.WriteLine($"connection = {connection}");
+            services.AddDbContext<BangazonAPIContext>(options => options.UseSqlite(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
