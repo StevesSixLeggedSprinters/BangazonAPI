@@ -38,9 +38,27 @@ namespace BangazonAPI.Controllers
         // GET api/values/5
         // This is a hard coded example of retrieving the customer with a specific name 
         [HttpGet("{id}", Name="GetCustomer")]
-        public string Get(int id)
+        public IActionResult Get([FromRoute] int id)
         {
-            return "value";
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            try 
+            {
+                Customer customer = _context.Customers.Single(c => c.CustomerId == id);
+                if (customer == null)
+                {
+                    return NotFound();
+                }
+                
+                return Ok(customer); 
+            }
+            catch(System.InvalidOperationException ex)
+            {
+                return NotFound();
+            }
         }
 
         // POST api/values
@@ -113,6 +131,8 @@ namespace BangazonAPI.Controllers
             return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
+        
+/// Need to remove the Delete form this file eventually.!-- 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
