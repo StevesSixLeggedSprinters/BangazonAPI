@@ -23,7 +23,7 @@ namespace BangazonAPI.Models
         [Required]
         public DateTime DateAccountCreated {get; set;} //check to see if 'string' needs to be replaced with 'DateTime'
         
-        [Required]
+        
         // this is to determine the customer's last interaction  
         public DateTime LastInteraction { get; set; }
 
@@ -34,7 +34,8 @@ namespace BangazonAPI.Models
         public Customer()
         {
             IsActive = 1;
+            DateAccountCreated = DateTime.Now;
         }
-        ICollection<Customer> Customers;
+        ICollection<Order> Orders;
     }
 }
