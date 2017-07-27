@@ -84,7 +84,45 @@ namespace BangazonAPI.Controllers
                    throw;
                }
            }
-           return CreatedAtRoute(GetEmployee, new {id = employee.EmplpoyeeId}, employee);
+           return CreatedAtRoute("GetEmployee", new {id = employee.EmplpoyeeId}, employee);
+       }
+
+       private bool EmployeeExists(int emplId)
+       {
+           return _context.Employees.Count(emp => emp.EmplpoyeeId== emplId) > 0;
+       }
+
+       //Put
+       [HttpPut("{id}")]
+       public IActionResult Put(int id, [FromBody] Employee employee)
+       {
+           if(!ModelState.IsValid)
+           {
+               return BadRequest(ModelState);
+           }
+           if(id !=employee.EmplpoyeeId)
+           {
+               return BadRequest();
+           }
+
+           _context.Entry(employee).State = EntityState.Modified;
+
+           try
+           {
+               _context.SaveChanges();
+           }
+           catch(DbUpdateConcurrencyException)
+           {
+               if(!EmployeeExists(id))
+               {
+                   return NotFound();
+               }
+               else
+               {
+                   throw;
+               }
+           }
+           return new StatusCodeResult(StatusCodes.Status204NoContent);
        }
     }
 
