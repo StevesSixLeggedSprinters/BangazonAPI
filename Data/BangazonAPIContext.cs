@@ -11,6 +11,8 @@ namespace BangazonAPI.Data
 
 //this is where you set the database relationship to the tables
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public object Order { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
