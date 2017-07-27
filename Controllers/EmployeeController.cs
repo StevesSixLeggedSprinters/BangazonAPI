@@ -75,7 +75,7 @@ namespace BangazonAPI.Controllers
            }
            catch(DbUpdateException)
            {
-               if(EmployeeExists(employee.EmplpoyeeId))
+               if(EmployeeExists(employee.EmployeeId))
                {
                    return new StatusCodeResult(StatusCodes.Status409Conflict);
                }
@@ -84,12 +84,12 @@ namespace BangazonAPI.Controllers
                    throw;
                }
            }
-           return CreatedAtRoute("GetEmployee", new {id = employee.EmplpoyeeId}, employee);
+           return CreatedAtRoute("GetEmployee", new {id = employee.EmployeeId}, employee);
        }
 
        private bool EmployeeExists(int emplId)
        {
-           return _context.Employees.Count(emp => emp.EmplpoyeeId== emplId) > 0;
+           return _context.Employees.Count(emp => emp.EmployeeId== emplId) > 0;
        }
 
        //Put
@@ -100,7 +100,7 @@ namespace BangazonAPI.Controllers
            {
                return BadRequest(ModelState);
            }
-           if(id !=employee.EmplpoyeeId)
+           if(id !=employee.EmployeeId)
            {
                return BadRequest();
            }
