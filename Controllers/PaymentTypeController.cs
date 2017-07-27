@@ -11,10 +11,10 @@ using Microsoft.EntityFrameworkCore;
 namespace BangazonAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class CustomerController : Controller
+    public class PaymentTypeController : Controller
     {
         private BangazonAPIContext _context;
-        public CustomerController(BangazonAPIContext ctx)
+        public PaymentTypeController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
@@ -23,21 +23,21 @@ namespace BangazonAPI.Controllers
         //This gets all the data
         [HttpGet]
         public IActionResult Get()
-        {
-            IQueryable<object> AllCustomers = from customer in _context.Customer select customer;
+        {                      //
+            IQueryable<object> AllPaymentTypes = from PaymentType in _context.PaymentType select PaymentType;
 
-            if (AllCustomers == null)
+            if (AllPaymentTypes == null)
             {
                 return NotFound();
             }
 
-            return Ok(AllCustomers);
+            return Ok(AllPaymentTypes);
 
         }
 
         // GET api/values/5
         // This is a hard coded example of retrieving the customer with a specific name 
-        [HttpGet("{id}", Name="GetCustomer")]
+        [HttpGet("{id}", Name="GetPayment")]
         public IActionResult Get([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -47,13 +47,13 @@ namespace BangazonAPI.Controllers
             
             try 
             {
-                Customer customer = _context.Customer.Single(c => c.CustomerId == id);
-                if (customer == null)
+                PaymentType paymentType = _context.PaymentType.Single(c => c.PaymentTypeId == id);
+                if (paymentType == null)
                 {
                     return NotFound();
                 }
                 
-                return Ok(customer); 
+                return Ok(paymentType); 
             }
             catch(System.InvalidOperationException)
             {
@@ -63,14 +63,14 @@ namespace BangazonAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Customer customer)
+        public IActionResult Post([FromBody] PaymentType paymentType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Customer.Add(customer);
+            _context.PaymentType.Add(paymentType);
             
             try
             {
@@ -78,7 +78,7 @@ namespace BangazonAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CustomerExists(customer.CustomerId))
+                if (PaymentExists(paymentType.PaymentTypeId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -88,29 +88,29 @@ namespace BangazonAPI.Controllers
                 }
             }
 
-            return CreatedAtRoute("GetCustomer", new { id = customer.CustomerId }, customer);
+            return CreatedAtRoute("GetPayment", new { id = paymentType.PaymentTypeId }, paymentType);
         }
 
-        private bool CustomerExists(int custId)
+        private bool PaymentExists(int payId)
         {
-          return _context.Customer.Count(e => e.CustomerId == custId) > 0;
+          return _context.PaymentType.Count(e => e.PaymentTypeId == payId) > 0;
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Customer customer)
+        public IActionResult Put(int id, [FromBody] PaymentType paymentType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != customer.CustomerId)
+            if (id != paymentType.PaymentTypeId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(customer).State = EntityState.Modified;
+            _context.Entry(paymentType).State = EntityState.Modified;
 
             try
             {
@@ -118,7 +118,7 @@ namespace BangazonAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomerExists(id))
+                if (!PaymentExists(id))
                 {
                     return NotFound();
                 }
@@ -142,16 +142,16 @@ namespace BangazonAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            Customer customer = _context.Customer.Single(m => m.CustomerId == id);
-            if (customer == null)
+            PaymentType paymentType = _context.PaymentType.Single(m => m.PaymentTypeId == id);
+            if (paymentType == null)
             {
                 return NotFound();
             }
 
-            _context.Customer.Remove(customer);
+            _context.PaymentType.Remove(paymentType);
             _context.SaveChanges();
 
-            return Ok(customer);
+            return Ok(paymentType);
         }
     }
 }
