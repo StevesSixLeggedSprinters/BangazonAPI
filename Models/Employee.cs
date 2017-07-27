@@ -25,7 +25,7 @@ namespace BangazonAPI.Models
 
 
 
-        // this is to set whether the customer is active/inactive
+        //This will set the Supervisior boolean to False on default employees. 
         [Required]
         public Boolean IsSupervisior { get; set; }
 
