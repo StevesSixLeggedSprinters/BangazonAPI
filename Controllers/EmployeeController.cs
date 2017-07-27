@@ -47,7 +47,7 @@ namespace BangazonAPI.Controllers
            }
            try
            {
-               Employee employee = _context.Employees.Single(e=>e.EmployeeId == id);
+               Employee employee = _context.Employees.Single(emp=>emp.EmployeeId == id);
                if (employee == null)
                {
                    return NotFound();
@@ -67,7 +67,7 @@ namespace BangazonAPI.Controllers
            {
              BadRequest(ModelState);
            }
-           _context.Employee.Add(employee);
+           _context.Employees.Add(employee);
 
            try
            {
