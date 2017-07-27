@@ -16,7 +16,13 @@ namespace BangazonAPI.Models
         [Required]
         public string EmpLastName {get; set;}
         
-        public string JobTitle {get; set; }
+          
+        [Required]
+          
+        public DateTime EmpStartDate { get; set; }
+
+        public string EmpJobTitle {get; set; }
+
 
 
         // this is to set whether the customer is active/inactive
