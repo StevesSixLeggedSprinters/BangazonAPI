@@ -34,8 +34,10 @@ namespace BangazonAPI.Models
         public Customer()
         {
             IsActive = 1;
+            // PK get the current timestamp
             DateAccountCreated = DateTime.Now;
         }
+        //PK I have changed this  Icollection customer to order to show the many orders in the collection.
         ICollection<Order> Orders;
     }
 }

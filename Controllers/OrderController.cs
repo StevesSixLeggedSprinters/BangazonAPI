@@ -9,8 +9,11 @@ using System.Collections.Generic;
 
 namespace BangazonAPI.Controllers
 
-{
+{// 
     [Route("api/[controller]")]
+    //PK- Created this Controller to get, post, add, delete the Orders
+
+
     public class OrderController : Controller
     {
         private BangazonAPIContext _context;
@@ -19,8 +22,7 @@ namespace BangazonAPI.Controllers
             _context = ctx;
         }
 
-        // GET api/values
-        //This gets all the data
+        //PK  GET api/values
         [HttpGet]
         public IActionResult Get()
         {
@@ -35,11 +37,13 @@ namespace BangazonAPI.Controllers
 
         }
 
-        // GET api/values/5
-        // This is a hard coded example of retrieving the order with a specific name 
+        //PK GET api/values/5
+        //PK This gets all the data. Get an item by ID	
+        // PK This is a hard coded example of retrieving the order with a specific name. 
         [HttpGet("{id}", Name="GetOrder")]
         public IActionResult Get([FromRoute] int id)
         {
+            //PK if order is null return notFound
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -61,7 +65,7 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        // POST api/values
+        // PK POST api/values
         [HttpPost]
         public IActionResult Post([FromBody] Order order)
         {
