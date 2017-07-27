@@ -8,7 +8,7 @@ namespace BangazonAPI.Models
    public class Employee 
     {   
         [Key]
-        public int EmplpoyeeId {get; set;}
+        public int EmployeeId {get; set;}
 
         [Required]
         public string EmpFirstName {get; set;}
