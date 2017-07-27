@@ -38,7 +38,7 @@ namespace BangazonAPI.Controllers
         }
 
         //Get api/induvidualEmp/byID
-       [HttpGet("{id}", Name="GetCustomer")]
+       [HttpGet("{id}", Name="GetEmployee")]
        public IActionResult Get([FromRoute] int id)
        {
            if(!ModelState.IsValid)
