@@ -32,7 +32,7 @@ namespace BangazonAPI.Models
 
 
 
-        //This will set the Supervisior boolean to False on default employees. 
+        //KC -This will set the Supervisior boolean to False on default employees. 
         [Required]
         public Boolean IsSupervisior { get; set; }
 
@@ -42,10 +42,11 @@ namespace BangazonAPI.Models
             IsSupervisior = false;
         }
         
-        //Setting a property of "Dept"  on the instance of emp
+        //KC - Setting a property of "Dept"  on the instance of emp
         public int DepartmentId {get; set;}
-        //The below is where the foreign key to the Dept table will be related. 
-        // This line below will need to be commented until the Deparment Table is accessible.
-        public Department Department {get; set;}
+        /*KC-The below is where the foreign key to the Dept table will be related. 
+        This line below will need to be commented until the Deparment Table is accessible.*/
+        
+        // public Department Department {get; set;}
     }
 }
