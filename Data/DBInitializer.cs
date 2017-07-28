@@ -15,7 +15,7 @@ namespace BangazonAPI.Data
             using (var context = new BangazonAPIContext(serviceProvider.GetRequiredService<DbContextOptions<BangazonAPIContext>>()))
             {
                 // Look for any products.
-                if (context.Customers.Any() && context.Employees.Any() && context.Products.Any())
+                if (context.Customers.Any())
                 {
                     return;   // DB has been seeded
                 }
@@ -55,92 +55,13 @@ namespace BangazonAPI.Data
                         LastName = "Miller",
                         Email = "k2@k2.com",
                         Phone = "5559990000",
-                         LastInteraction = new System.DateTime(2010,8,8 , 4,32,00)
+                        LastInteraction = new System.DateTime(2010,8,8 , 4,32,00)
                     },
                 };
 
-                foreach (Cust c in Customer)
+                foreach (Customer c in customers)
                 {
-                    context.Cust.Add(c);
-                }
-                context.SaveChanges();
-               
-               
-               //Will Load employees to Seed Databse
-                var employees = new Employee[]
-                {
-                    new Employee { 
-                        EmpFirstName = "Kevin",
-                        EmpLastName = "Miller",
-                        EmpJobTitle = "Software Developer",
-                        EmpStartDate = new System.DateTime(2010,8,8 , 4,32,00),
-                        IsSupervisor = 1
-                    },
-                    new Employee { 
-                        EmpFirstName= "Krissy",
-                        EmpLastName ="Caron",
-                        EmpJobTitle = "Software Developer",
-                        EmpStartDate = new System.DateTime(2010,8,8 , 4,32,00),
-                        IsSupervisor = 0
-                    },
-                    new Employee { 
-                        EmpFirstName = "Jackie",
-                        EmpLastName = "Knight",
-                        EmpJobTitle = "Software Developer",
-                        EmpStartDate = new System.DateTime(2010,8,8 , 4,32,00),
-                        IsSupervisor = 0
-                    },
-                    new Employee { 
-                        EmpFirstName = "Kyle",
-                        EmpLastName = "Kellums",
-                        EmpJobTitle = "Software Developer",
-                        EmpStartDate = new System.DateTime(2010,8,8 , 4,32,00),
-                        IsSupervisor = 1
-                    },
-                    new Employee { 
-                        EmpFirstName= "Preeti",
-                        EmpLastName ="Pathak",
-                        EmpJobTitle = "Software Developer",
-                        EmpStartDate = new System.DateTime(2010,8,8 , 4,32,00),
-                        IsSupervisor = 0
-                    },
-                };
-
-                foreach (Employee e in employees)
-                {
-                    context.Employee.Add(e);
-                }
-                context.SaveChanges();
-
-                //Will Load Products to Seed Databse
-                var products = new Products[]
-                {
-                    new Product {
-                        Price = 2.90,
-                        Title = "Camera",
-                        Description = "Pentax K1000",
-                        ProductAmount = 2
-
-                    },
-                    new Product {
-                        Price = 222.90,
-                        Title = "Computer",
-                        Description = "Old",
-                        ProductAmount = 1
-
-                    },
-                    new Product {
-                        Price = 5.90,
-                        Title = "Tripod",
-                        Description = "Canon",
-                        ProductAmount = 4
-
-                    },
-                };
-
-                foreach (Product p in products)
-                {
-                    context.Product.Add(p);
+                    context.Customers.Add(c);
                 }
                 context.SaveChanges();
             };
