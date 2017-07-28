@@ -10,8 +10,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BangazonAPI.Controllers
 {
+    // Class name for the Product type controller
+    // This controller contains POST, PUT, GET, and DELETE methods.
     [Route("api/[controller]")]
-    public class ProductTypeController : Controller //Class name for the Product type controller
+    public class ProductTypeController : Controller 
     {
         private BangazonAPIContext _context;
         
@@ -21,11 +23,11 @@ namespace BangazonAPI.Controllers
         }
 
         // kk - GET api/values
-        // This will get ALL productType categories
+        // This will query ALL productType categories. It will return every category with the ProductTypeId and CategoryName
         [HttpGet]
         public IActionResult Get()
         {
-            IQueryable<object> AllProductTypes = from product_type in _context.ProductTypes select product_type; //verify that all of the 'product type' names are correct
+            IQueryable<object> AllProductTypes = from product_type in _context.ProductTypes select product_type; 
 
             if (AllProductTypes == null)
             {
@@ -36,7 +38,7 @@ namespace BangazonAPI.Controllers
         }
 
         // kk - GET api/values/int(e.g. 1, 4, etc.)
-        // This will retrieve individual ProductTypes by their id. It will output with their specific category name
+        // This will retrieve individual ProductTypes by their id. It will output the CategoryName.
         [HttpGet("{id}", Name="GetAllProductTypes")]
 
         public IActionResult Get([FromRoute] int id)
@@ -63,6 +65,8 @@ namespace BangazonAPI.Controllers
         }
 
         // kk POST api/values
+        // this method creates a new ProductType in the DB.
+        // The CategoryName is the only entity that needs to be added when posting a new object to the db through Postman. The ProductTypeId will be generated automatically upon posting.
         [HttpPost]
         public IActionResult Post([FromBody] ProductType product_type)
         {
@@ -92,7 +96,7 @@ namespace BangazonAPI.Controllers
             return CreatedAtRoute("GetProductType", new { id = product_type.ProductTypeId }, product_type);
         }
 
-        // kk - Verifies that a ProductType exists
+        // kk - This method verifies that a ProductType exists
         private bool ProductTypeExists(int prodTypeId)
         {
             return _context.ProductTypes.Count(p => p.ProductTypeId == prodTypeId) > 0;
@@ -100,6 +104,7 @@ namespace BangazonAPI.Controllers
 
         
         // kk - PUT api/values 
+        // This method will modify the ProductType object in the database. 
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] ProductType product_type)
         {
@@ -131,6 +136,8 @@ namespace BangazonAPI.Controllers
         }
        
         // kk DELETE api/values
+        // this method will remove a Product Type from the database
+        // The ProductTypeId will be targeted. This will remove the entire object with both the ProductTypeId and the CategoryName
         [HttpDelete("{id}")]
 
         public IActionResult Delete(int id)
@@ -153,20 +160,6 @@ namespace BangazonAPI.Controllers
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
