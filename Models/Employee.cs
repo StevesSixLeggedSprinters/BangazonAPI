@@ -46,7 +46,7 @@ namespace BangazonAPI.Models
         public int DepartmentId {get; set;}
         /*KC-The below is where the foreign key to the Dept table will be related. 
         This line below will need to be commented until the Deparment Table is accessible.*/
-        
-        // public Department Department {get; set;}
+
+        public Department Department {get; set;}
     }
 }
