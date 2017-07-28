@@ -143,8 +143,8 @@ namespace BangazonAPI.Data
                     context.Product.Add(p);
                 }
                 context.SaveChanges();
-
+            };
+                
             }
        }
     }
-}
