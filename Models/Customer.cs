@@ -35,6 +35,7 @@ namespace BangazonAPI.Models
         {
             IsActive = 1;
         }
-        ICollection<Customer> Customers;
+
+        public virtual ICollection<PaymentType> PaymentTypes {get; set;}
     }
 }
