@@ -26,7 +26,7 @@ namespace BangazonAPI.Models
         [Required]
         public DateTime DateAccountCreated {get; set;}
         
-        [Required]
+        
         // this is to determine the customer's last interaction  
         public DateTime LastInteraction { get; set; }
 
@@ -37,9 +37,16 @@ namespace BangazonAPI.Models
         public Customer()
         {
             IsActive = 1;
+            // PK get the current timestamp
+            DateAccountCreated = DateTime.Now;
         }
+
+        //PK I have changed this  Icollection customer to order to show the many orders in the collection.
+        ICollection<Order> Orders;
+
 
         // This is to create a one to many relationship. A Customer will have many PaymentTypes
         public virtual ICollection<PaymentType> PaymentTypes {get; set;}
+
     }
 }
