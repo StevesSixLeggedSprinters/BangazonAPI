@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-
 namespace BangazonAPI.Models
 {
     /*KC - Created the Employee Model, 
@@ -16,7 +15,6 @@ namespace BangazonAPI.Models
     {   
         [Key]
         public int EmployeeId {get; set;}
-
         [Required]
         public string EmpFirstName {get; set;}
         
@@ -27,26 +25,20 @@ namespace BangazonAPI.Models
         [Required]
           
         public DateTime EmpStartDate { get; set; }
-
         public string EmpJobTitle {get; set; }
-
-
-
         //KC -This will set the Supervisior boolean to False on default employees. 
         [Required]
-        public Boolean IsSupervisior { get; set; }
-
+        public Boolean IsSupervisor { get; set; }
         //Defaulting to false on IsSupervisior for every database entry.
         public Employee()
         {
-            IsSupervisior = false;
+            IsSupervisor = false;
         }
         
         //KC - Setting a property of "Dept"  on the instance of emp
         public int DepartmentId {get; set;}
         /*KC-The below is where the foreign key to the Dept table will be related. 
         This line below will need to be commented until the Deparment Table is accessible.*/
-
-        public Department Department {get; set;}
+        //public Department Department {get; set;}
     }
 }
