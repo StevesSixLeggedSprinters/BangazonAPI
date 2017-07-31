@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BangazonAPI.Controllers
 {
+    // kk - This controller will provide the methods GET, POST and PUT for the Customer table. 
     [Route("api/[controller]")]
     public class CustomerController : Controller
     {
@@ -19,8 +20,8 @@ namespace BangazonAPI.Controllers
             _context = ctx;
         }
 
-        // GET api/values
-        //This gets all the data
+        // kk - GET api/values
+        //This gets all the Customer data from the database
         [HttpGet]
         public IActionResult Get()
         {
@@ -35,8 +36,8 @@ namespace BangazonAPI.Controllers
 
         }
 
-        // GET api/values/5
-        // This is a hard coded example of retrieving the customer with a specific name 
+        // kk - GET api/values/5
+        // This is a hard coded example of retrieving the customer with a specific name. The Customer will be targeted by the id, but will also return the Customer's name.
         [HttpGet("{id}", Name="GetCustomer")]
         public IActionResult Get([FromRoute] int id)
         {
@@ -61,7 +62,8 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        // POST api/values
+        // kk - POST api/values
+        // This will post/add a new Customer to the database
         [HttpPost]
         public IActionResult Post([FromBody] Customer customer)
         {
@@ -91,12 +93,14 @@ namespace BangazonAPI.Controllers
             return CreatedAtRoute("GetCustomer", new { id = customer.CustomerId }, customer);
         }
 
+        // kk - This method verifies whether or not a Customer exists. It tests this through a boolean, which evaluates if there is an int greater than zero.
         private bool CustomerExists(int custId)
         {
           return _context.Customer.Count(e => e.CustomerId == custId) > 0;
         }
 
-        // PUT api/values/5
+        // kk - PUT api/values/
+        // This method allows for a specific Customer to be modified.
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Customer customer)
         {
@@ -129,29 +133,6 @@ namespace BangazonAPI.Controllers
             }
 
             return new StatusCodeResult(StatusCodes.Status204NoContent);
-        }
-
-        
-/// Need to remove the Delete form this file eventually.!-- 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Customer customer = _context.Customer.Single(m => m.CustomerId == id);
-            if (customer == null)
-            {
-                return NotFound();
-            }
-
-            _context.Customer.Remove(customer);
-            _context.SaveChanges();
-
-            return Ok(customer);
         }
     }
 }
