@@ -37,8 +37,8 @@ namespace BangazonAPI.Controllers
         }
 
         // kk - GET api/values/int(e.g. 1, 4, etc.)
-        // This will retrieve individual ProductTypes by their id. It will output the CategoryName.
-        [HttpGet("{id}", Name="GetAllProductTypes")]
+        // This will retrieve an individual Training program by its id.
+        [HttpGet("{id}", Name="GetTrainingProgram")]
 
         public IActionResult Get([FromRoute] int id)
         {
