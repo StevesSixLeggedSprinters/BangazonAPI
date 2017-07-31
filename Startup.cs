@@ -44,6 +44,9 @@ namespace BangazonAPI
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            //KC-THis will run the Database Initalizer on Start-up to ensure the data is set. 
+            DbInitializer.Initialize(app.ApplicationServices);
+
             app.UseMvc();
         }
     }

@@ -10,35 +10,37 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BangazonAPI.Controllers
 {
-    // kk - This controller will provide the methods GET, POST and PUT for the Customer table. 
+    
+    // Kevin created this Department Controller
+    // The purpose of the Department Controller is to be able to GET, POST, and PUT.
     [Route("api/[controller]")]
-    public class CustomerController : Controller
+    public class DeptTypeController : Controller
     {
         private BangazonAPIContext _context;
-        public CustomerController(BangazonAPIContext ctx)
+        public DeptTypeController(BangazonAPIContext ctx)
         {
             _context = ctx;
         }
 
-        // kk - GET api/values
-        //This gets all the Customer data from the database
+        // GET api/DeptType
+        //This (GET) returns all the Departments
         [HttpGet]
         public IActionResult Get()
-        {
-            IQueryable<object> AllCustomers = from customer in _context.Customer select customer;
+        {                      
+            IQueryable<object> AllDeptTypes = from DeptType in _context.DeptType select DeptType;
 
-            if (AllCustomers == null)
+            if (AllDeptTypes == null)
             {
                 return NotFound();
             }
 
-            return Ok(AllCustomers);
+            return Ok(AllDeptTypes);
 
         }
 
-        // kk - GET api/values/5
-        // This is a hard coded example of retrieving the customer with a specific name. The Customer will be targeted by the id, but will also return the Customer's name.
-        [HttpGet("{id}", Name="GetCustomer")]
+        // GET api/DeptType/1
+        // This returns a specific Department Name
+        [HttpGet("{id}", Name="GetDepartment")]
         public IActionResult Get([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -48,13 +50,13 @@ namespace BangazonAPI.Controllers
             
             try 
             {
-                Customer customer = _context.Customer.Single(c => c.CustomerId == id);
-                if (customer == null)
+                DeptType deptType = _context.DeptType.Single(c => c.DeptTypeId == id);
+                if (deptType == null)
                 {
                     return NotFound();
                 }
                 
-                return Ok(customer); 
+                return Ok(deptType); 
             }
             catch(System.InvalidOperationException)
             {
@@ -62,17 +64,17 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        // kk - POST api/values
-        // This will post/add a new Customer to the database
+        // POST api/DeptType
+        // This allows you to add a new Department
         [HttpPost]
-        public IActionResult Post([FromBody] Customer customer)
+        public IActionResult Post([FromBody] DeptType deptType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Customer.Add(customer);
+            _context.DeptType.Add(deptType);
             
             try
             {
@@ -80,7 +82,7 @@ namespace BangazonAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CustomerExists(customer.CustomerId))
+                if (DepartmentExist(deptType.DeptTypeId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -90,31 +92,30 @@ namespace BangazonAPI.Controllers
                 }
             }
 
-            return CreatedAtRoute("GetCustomer", new { id = customer.CustomerId }, customer);
+            return CreatedAtRoute("GetDepartment", new { id = deptType.DeptTypeId }, deptType);
         }
 
-        // kk - This method verifies whether or not a Customer exists. It tests this through a boolean, which evaluates if there is an int greater than zero.
-        private bool CustomerExists(int custId)
+        private bool DepartmentExist(int deptId)
         {
-          return _context.Customer.Count(e => e.CustomerId == custId) > 0;
+          return _context.DeptType.Count(e => e.DeptTypeId == deptId) > 0;
         }
 
-        // kk - PUT api/values/
-        // This method allows for a specific Customer to be modified.
+        // PUT api/DeptType/1
+        // This allows you to edit a specific Department
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Customer customer)
+        public IActionResult Put(int id, [FromBody] DeptType deptType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != customer.CustomerId)
+            if (id != deptType.DeptTypeId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(customer).State = EntityState.Modified;
+            _context.Entry(deptType).State = EntityState.Modified;
 
             try
             {
@@ -122,7 +123,7 @@ namespace BangazonAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CustomerExists(id))
+                if (!DepartmentExist(id))
                 {
                     return NotFound();
                 }
