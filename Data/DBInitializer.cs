@@ -15,7 +15,7 @@ namespace BangazonAPI.Data
             using (var context = new BangazonAPIContext(serviceProvider.GetRequiredService<DbContextOptions<BangazonAPIContext>>()))
             {
                 // Look for any products.
-                if (context.Customers.Any())
+                if (context.Customer.Any())
                 {
                     return;   // DB has been seeded
                 }
@@ -61,7 +61,7 @@ namespace BangazonAPI.Data
 
                 foreach (Customer c in customers)
                 {
-                    context.Customers.Add(c);
+                    context.Customer.Add(c);
                 }
                 context.SaveChanges();
             };

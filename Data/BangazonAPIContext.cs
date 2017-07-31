@@ -11,7 +11,6 @@ namespace BangazonAPI.Data
         { }
 
 // this is where you set the database relationship to the tables via field sets
-        public DbSet<Customer> Customers { get; set; }
 
         public DbSet<TrainingProgram> TrainingPrograms { get; set; }
 
@@ -20,6 +19,7 @@ namespace BangazonAPI.Data
         public DbSet<ProductType> ProductTypes { get; set; } 
 
         public DbSet<Customer> Customer { get; set; }
+        
         public DbSet<PaymentType> PaymentType { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
