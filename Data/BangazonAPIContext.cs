@@ -11,6 +11,7 @@ namespace BangazonAPI.Data
 
 //this is where you set the database relationship to the tables
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Computer> Computers { get; set; } //jk-Here I am setting up a relationship between the Computer table and the database
 
         public DbSet<ProductType> ProductTypes { get; set; } 
 
