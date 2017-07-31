@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BangazonAPI.Controllers
 {
+     // Kevin created this Payment Type Controller
+    // The purpose of the Payment Type Controller is to be able to GET, POST, and PUT.
     [Route("api/[controller]")]
     public class PaymentTypeController : Controller
     {
@@ -19,11 +21,11 @@ namespace BangazonAPI.Controllers
             _context = ctx;
         }
 
-        // GET api/values
+        // GET api/PaymentType
         //This gets all the data
         [HttpGet]
         public IActionResult Get()
-        {                      //
+        {                      
             IQueryable<object> AllPaymentTypes = from PaymentType in _context.PaymentType select PaymentType;
 
             if (AllPaymentTypes == null)
@@ -35,8 +37,8 @@ namespace BangazonAPI.Controllers
 
         }
 
-        // GET api/values/5
-        // This is a hard coded example of retrieving the customer with a specific name 
+        // GET api/PaymentType/{id}
+        // This retrieves a specific payment type
         [HttpGet("{id}", Name="GetPayment")]
         public IActionResult Get([FromRoute] int id)
         {
@@ -61,7 +63,8 @@ namespace BangazonAPI.Controllers
             }
         }
 
-        // POST api/values
+        // POST api/PaymentTypes
+        // This allows you to add a payment type
         [HttpPost]
         public IActionResult Post([FromBody] PaymentType paymentType)
         {
@@ -96,7 +99,8 @@ namespace BangazonAPI.Controllers
           return _context.PaymentType.Count(e => e.PaymentTypeId == payId) > 0;
         }
 
-        // PUT api/values/5
+        // PUT api/PaymentType/{id}
+        // This allows you to edit a specific payment type
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] PaymentType paymentType)
         {
@@ -132,8 +136,8 @@ namespace BangazonAPI.Controllers
         }
 
         
-/// Need to remove the Delete form this file eventually.!-- 
-        // DELETE api/values/5
+        // This allows you to delete a specific payment type by id
+        // DELETE api/PaymentType/{id}
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
