@@ -5,12 +5,17 @@ namespace BangazonAPI.Data
 {
     public class BangazonAPIContext : DbContext
     {
+
         public BangazonAPIContext(DbContextOptions<BangazonAPIContext> options)
             : base(options)
         { }
 
-//this is where you set the database relationship to the tables
+// this is where you set the database relationship to the tables via field sets
         public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<TrainingProgram> TrainingPrograms { get; set; }
+
+        // public int <StartDate> StartDates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
