@@ -18,7 +18,7 @@ namespace BangazonAPI.Models
         // kk - There can be many products in a ProductType category. 
         // ProductType is a FK in the Products table (see ERD).
         // Querying Products will return the ProductType. 
-        public virtual ICollection<Product> Products { get; set; }
+       // public virtual ICollection<Product> Products { get; set; }
 
     }
 }
