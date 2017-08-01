@@ -151,11 +151,10 @@ Example: {
 	"PaymentTypeName":"Bitcoin"
 }
 
-### Order
-=====================================
-Reademe for creating Order by Preeti
-======================================
-### You need payTypeId before creating Order
+# Order
+
+## Reademe for creating Order by Preeti
+## You need payTypeId before creating Order
 
 * GET : The HTTP GET method is used to **read** (or retrieve) a representation of a resource. In the “happy” (or non-error) path, GET returns a representation in XML or JSON and an HTTP response code of 200 (OK). In an error case, it most often returns a 404 (NOT FOUND) or 400 (BAD REQUEST). You can access a list of all orders by running a Get call to `http://localhost:5000/order`
 
