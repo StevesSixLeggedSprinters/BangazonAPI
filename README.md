@@ -1,5 +1,7 @@
 Bangazon API
+
 Based on the Bangazon command line application that you have worked on during orientation, this API will expose ten resources for client developers to consume for other application they want to write.
+
 The Customer resource at the URI of http://localhost:5000/api/Customer
 The Department Type resource at the URI of http://localhost:5000/api/DeptType
 The Product resource at the URI of http://localhost:5000/api/Product
@@ -9,6 +11,8 @@ The Computer resource at the URI of http://localhost:5000/api/computer
 The Employees resource at the URI of http://localhost:5000/api/employee
 The Order resource at the URI of http://localhost:5000/api/order
 The Payment resource at the URI of http://localhost:5000/api/payment
+
+
 How to Run
 After cloning the repo, restore dependencies and apply the migration.
 dotnet restore
@@ -59,7 +63,7 @@ This will compile and run everything as well as initialize the database with som
 Using the API
 For now, all calls to the API will be made from http://localhost:5000 as the domain. All calls will be made from here.
 EX you can get a list of all the customers by making a get call to http://localhost:5000/customer
-#Customers
+Customers
 GET You can access a list of all customers by running a Get call to http://localhost:5000/customer
 GET one. You can get the information on a single customer by running a Get call to http://localhost:5000/customer/{customerID}
 Note you need to have a customers unique ID number to get the correct information
@@ -140,29 +144,45 @@ Example for using PUT:
 * URL: http://localhost:5000/product/{productID}
 
 
-Product Types
-GET You can access a list of all product types by running a Get call to http://localhost:5000/producttype
-GET one. You can get the information on a single product type by running a Get call to http://localhost:5000/producttype/{producttypeID}
-Note you need to have a product types unique ID number to get the correct information
-PUT You can update the info on a specific product type by running a Put call to http://localhost:5000/producttype/{producttypeID}
+###Product Types###
+
+**GET** You can access a list of all product types by running a Get call to http://localhost:5000/producttype.
+
+**GET** one. You can get the information on a single product type by running a Get call to http://localhost:5000/producttype/{producttypeID}.
+
+> Note: you need to have a product types unique ID number to get the correct information.
+
+**PUT** You can update the info on a specific product type by running a Put call to http://localhost:5000/producttype/{producttypeID}.	
 Running a put requires that you submit the entire object.
-Example: {
-        "CategoryName": "Electronics"
-}
 
-DELETE You can delete a product type by running a Delete call to http://localhost:5000/producttype{producttypeID}
-POST You can enter a new product type by running a Post call to http://localhost:5000/producttype
+Example: 
+ ```
+ 	{
+	 	"ProductTypeId" : "3",
+    	"CategoryName" : "Electronics"
+	}
+```
+
+**DELETE** You can delete a product type by running a Delete call to http://localhost:5000/producttype{producttypeID}.
+
+**POST** You can enter a new product type by running a Post call to http://localhost:5000/producttype
 You must put a name with a post.
-Example: {
-        "CategoryName": "Electronics"
-}
 
-Payment Types
-GET You can access a list of all payment types by running a Get call to http://localhost:5000/paymenttype
-GET one. You can get the information on a single payment type by running a Get call to http://localhost:5000/paymenttype/{paymenttypeID}
+Example: 
+ ```
+ 	{
+        "CategoryName": "Electronics"
+	}
+```
+
+KM
+##Payment Types
+**GET** You can access a list of all payment types by running a Get call to http://localhost:5000/paymenttype
+**GET** one. You can get the information on a single payment type by running a Get call to http://localhost:5000/paymenttype/{paymenttypeID}
 Note you need to have a payment types unique ID number to get the correct information
-PUT You can update the info on a specific payment type by running a Put call to http://localhost:5000/paymenttype/{paymenttypeID}
+**PUT** You can update the info on a specific payment type by running a Put call to http://localhost:5000/paymenttype/{paymenttypeID}
 Running a Put requires that you submit the entire object.
+
 Example: {
 	"PaymentTypeId":"1",
 	"AccountNumber":"5003235",
@@ -177,6 +197,72 @@ Example: {
 	"CustomerId":"1",
 	"PaymentTypeName":"Bitcoin"
 }
+
+# Order
+
+## Reademe for creating Order by Preeti
+## You need payTypeId before creating Order
+
+* GET : The HTTP GET method is used to **read** (or retrieve) a representation of a resource. In the “happy” (or non-error) path, GET returns a representation in XML or JSON and an HTTP response code of 200 (OK). In an error case, it most often returns a 404 (NOT FOUND) or 400 (BAD REQUEST). You can access a list of all orders by running a Get call to `http://localhost:5000/order`
+
+### You need a order unique Id number to get the information
+* GET one. You can get the information for a  single order by sentding a Get call to `http://localhost:5000/order/{OrderId}`
+* GET one will return JSON containing the order details and  an array of products added to that order
+
+
+* PUT is most-often utilized for **update** capabilities, PUT-ing to a known resource URI with the request body    containing the newly-updated representation of the original resource.
+ You can update the info on a specific order by sendin a Put call to `http://localhost:5000/order/{OrderId}`
+    * Put requires to submit below object:
+    * Example: 
+	{ 
+
+		 "OrderId": 1,
+		 "PaytypeId": 1,
+		 "DateOrdered": "08-01-2017", 
+		 "customerId": 1 }
+
+
+* 
+* POST is used to create subordinate resources. When creating a new resource, POST to the parent and the service takes care of associating the new resource with the parent, assigning an ID (new resource URI) You can add a new  order by sending a Post call to `http://localhost:5000/order/`
+    * You need to include `DateOdered` `PaytypeId` and `customerId` in the body of the POST to enter a new order by sending a Post call to `http://localhost:5000/order`
+    * The DateCreate field is auto-generated with the current date.
+    * Example: 
+    
+{
+    "DateOrdered": "07-31-17",
+    "PaytypeId": 1,
+    "customerId":1
+}
+
+* DELETE used to **delete** a resource identified by a URI. 
+ You can delete an order by runningsending a Delete call to `http://localhost:5000/order/{OrderId}`
+ Calling DELETE on a resource a second time will often return a 404 (NOT FOUND) since it was already removed and therefore is no longer findable.
+
+
+
+### Employees
+
+* GET You can access a list of all employees by running a Get call to `http://localhost:5000/employee`
+* GET one You can get the information on a single employee by runnning a Get call to `http://localhost:5000/employee/{employeeID}`
+>Note you need to have a employee unique ID number to get the correct information
+
+* PUT You can update the info on a specific employee by running a Put call to `http://localhost:5000/employee/{employeeID}`
+    * Running a Put requires that you submit the entire object.
+    * Example: `{ "employeeID": 1, "name": "Minerva McGonagall", "jobTitle": "Professor", "dateStarted": "0001-01-01T00:00:00", "isSupervisor": 1, "departmentID": 1}`
+
+* POST You can enter a new payment type by running a Post call to `http://localhost:5000/employee`
+
+    * You must put a `name`, `jobTitle`, `dateStarted`, and `departmentID` with a Post.
+    * Example: `{ "name": "Minerva McGonagall", "jobTitle": "Professor", "dateStarted": "12-01-1956", "departmentID": 1}`
+    >isSupervisor is an autogenerated field that will set every employee to 0 (not a supervisor) 
+    >If you hire a supervisor you can add `"isSupervisor":1` to the POST or change `"isSupervisor":1` in a put later on. 
+
+=======
+Example: {"PaymentTypeId":"1", "AccountNumber":"5003235", "CustomerId":"1", "PaymentTypeName":"Bitcoin"}
+**DELETE** You can delete a payment type by running a Delete call to http://localhost:5000/paymenttype{paymenttypeID}
+**POST** You can enter a new payment type by running a Post call to http://localhost:5000/paymenttype
+Example: {"PaymentTypeId":"1", "AccountNumber":"5003235", "CustomerId":"1", "PaymentTypeName":"Bitcoin"}
+
 Order
 GET You can access a list of all orders by running a Get call to http://localhost:5000/order
 GET one. You can get the information on a single order by runnning a Get call to http://localhost:5000/order/{orderID}
@@ -184,15 +270,17 @@ GET one returns JSON containing the order details as well as an array of product
 Note you need to have a order unique ID number to get the correct information
 PUT You can update the info on a specific order by running a Put call to http://localhost:5000/order/{orderID}
 Running a Put requires that you submit the entire object.
-Example: {
-	"OrderId":"1",
-	"DateOrdered":"50",
-	"PayTypeId":"1",
-	"CustomerId":"1"
-}
+Example: 
+   {
+    "OrderId":"1",
+    "DateOrdered":"50",
+    "PayTypeId":"1",
+    "CustomerId":"1"
+   }
 
 
 DELETE You can delete an order by running a Delete call to http://localhost:5000/order/{orderID}
+
 POST You can enter a new order by running a Post call to http://localhost:5000/order
 {
 	"OrderId":"1",
@@ -205,7 +293,9 @@ POST You can enter a new order by running a Post call to http://localhost:5000/o
 POST You can add a new product to an order by running a Post call to http://localhost:5000/order/addproduct
 You must include the orderID and productID in the body of the POST
 Employees
+
 GET You can access a list of all employees by running a Get call to http://localhost:5000/employee
+
 GET one You can get the information on a single employee by running a Get call to http://localhost:5000/employee/{employeeID}
 Note you need to have a employee unique ID number to get the correct information
 PUT You can update the info on a specific employee by running a Put call to http://localhost:5000/employee/{employeeID}
@@ -226,24 +316,31 @@ POST You can enter a new payment type by running a Post call to http://localhost
 
 
 isSupervisor is an autogenerated field that will set every employee to 0 (not a supervisor) If you hire a supervisor you can add "isSupervisor":1 to the POST or change "isSupervisor":1 in a put later on.
-Departments
-GET You can access a list of all departments by running a Get call to http://localhost:5000/DeptType
-GET one. You can get the information on a single department by runnning a Get call to http://localhost:5000/deptType/{departmentID}
+
+KM
+##Departments
+**GET** You can access a list of all departments by running a Get call to http://localhost:5000/DeptType
+**GET** one. You can get the information on a single department by runnning a Get call to http://localhost:5000/deptType/{deptTypeId}
 Note you need to have a department unique ID number to get the correct information
-PUT You can update the info on a specific department by running a Put call to http://localhost:5000/deptType/{departmentID}
+**PUT** You can update the info on a specific department by running a Put call to http://localhost:5000/deptType/{deptTypeId}
 Running a Put requires that you submit the entire object.
-Example: {
-"DeptTypeId":"1",
-"DeptName":"IT",
-"ExpBudget":"3mil"
+
+Example: 
+{
+    "DeptTypeId":"1",
+    "DeptName":"IT",
+    "ExpBudget":"3mil"
 }
+
 POST You can enter a new payment type by running a Post call to http://localhost:5000/deptType
 You must put a name and expenseBudget with a Post.
-Example: {
-"DeptTypeId":"1",
-"DeptName":"IT",
-"ExpBudget":"3mil"
-}
+Example: 
+  {
+    "DeptTypeId":"1",
+    "DeptName":"IT",
+    "ExpBudget":"3mil"
+  }
+
 ##Computer Resource by Jackie
 
 In the Computer Resource, you will be able to **GET** **POST** **PUT** **DELETE** computer data in the database.
@@ -294,16 +391,67 @@ Example for using PUT:
 * Open Postman 
 * Select DELETE
 * URL: http://localhost:5000/computer/{computerID}
+=======
+Example: {"DeptTypeId":"1", "DeptName":"IT", "ExpBudget":"3mil"}
+**POST** You can enter a new payment type by running a Post call to http://localhost:5000/deptType
+You must enter DeptName
+Example: {"DeptName":"IT"}
 
-Training Programs
-GET You can access a list of all training programs by running a Get call to http://localhost:5000/trainingprogram
-GET one. You can get the information on a single training program by runnning a Get call to http://localhost:5000/trainingprogram/{trainingprogramID}
-Note you need to have a training program unique ID number to get the correct information
-PUT You can update the info on a specific training program by running a Put call to http://localhost:5000/trainingprogram/{trainingprogramID}
+Computer
+GET You can access a list of all computers by running a Get call to http://localhost:5000/computer
+GET one. You can get the information on a single computer by runnning a Get call to http://localhost:5000/computer/{computerID}
+Note you need to have a computer unique ID number to get the correct information
+PUT You can update the info on a specific computer by running a Put call to http://localhost:5000/computer/{computerID}
 Running a Put requires that you submit the entire object.
-Example: { “trainingProgramName”:”JS OnBoarding”, "trainingProgramID": 1 "StartDate": "02-14-2018", "EndDate": "02-15-2018", "maxAttendees": 50 }
-DELETE You can delete a training program by running a Delete call to http://localhost:5000/trainingprogram{trainingprogramID}
-Note - you can only delete a training program if the current date is before the start date of a program. You cannot delete programs that have already happened.
-POST You can enter a new training program by running a Post call to http://localhost:5000/trainingProgram
+Example: {
+    "PurchaseDate": "01-02-17",
+    "DecommissionDate": "12-05-17",
+    "EmployeeId": 2
+}
+DELETE You can delete a computer by running a Delete call to http://localhost:5000/computer{computerID}
+POST You can enter a new computer by running a Post call to http://localhost:5000/computer
+You must put a datePurchased with a Post.
+Example: {
+    "PurchaseDate": "01-02-17",
+    "DecommissionDate": "12-05-17",
+    "EmployeeId": 2
+}
+
+###Training Programs###
+
+**GET** You can access a list of all training programs by running a Get call to http://localhost:5000/trainingprogram.
+
+**GET** one. You can get the information on a single training program by runnning a Get call to http://localhost:5000/trainingprogram/{trainingprogramID}.
+Note you need to have a training program unique ID number to get the correct information
+
+**PUT** You can update the info on a specific training program by running a Put call to http://localhost:5000/trainingprogram/{trainingprogramID}.
+Running a Put requires that you submit the entire object.
+
+Example: 
+ ```
+ 	{ 
+		“trainingProgramName”:”JS OnBoarding”, 
+		"trainingProgramID": 1, 
+		"StartDate": "02-14-2018", 
+		"EndDate": "02-15-2018", 
+		"maxAttendees": 50 
+	}
+```
+
+**DELETE** You can delete a training program by running a Delete call to http://localhost:5000/trainingprogram{trainingprogramID}.
+
+> Note - you can only delete a training program if the current date is before the start date of a program. You cannot delete programs that have already started or that have already occurred.
+
+**POST** You can enter a new training program by running a Post call to http://localhost:5000/trainingProgram
 You must put a name, dateStart, dateEnd, and maxAttendees with a Post.
-Example: { “trainingProgramName”:”JS OnBoarding”, "trainingProgramID": 1 "StartDate": "02-14-2018", "EndDate": "02-15-2018", "maxAttendees": 50 }
+
+Example: 
+```
+	{ 
+		"trainingProgramID": 1,
+		“trainingProgramName”:”JS OnBoarding”,
+		"StartDate": "02-14-2018", 
+		"EndDate": "02-15-2018", 
+		"maxAttendees": 50 
+	}
+```
