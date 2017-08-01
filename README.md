@@ -78,7 +78,7 @@ Run `dotnet ef database update`
 Run `dotnet run`
 > This will compile and run everything as well as initialize the database with some data to get started
 
-####Using the API
+#### Using the API
 For now, all calls to the API will be made from (http://localhost:5000) as the domain.
 
 ```
