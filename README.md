@@ -117,22 +117,36 @@ Example:Example:
 }
 
 
-Product Types
-GET You can access a list of all product types by running a Get call to http://localhost:5000/producttype
-GET one. You can get the information on a single product type by running a Get call to http://localhost:5000/producttype/{producttypeID}
-Note you need to have a product types unique ID number to get the correct information
-PUT You can update the info on a specific product type by running a Put call to http://localhost:5000/producttype/{producttypeID}
-Running a put requires that you submit the entire object.
-Example: {
-        "CategoryName": "Electronics"
-}
+###Product Types###
 
-DELETE You can delete a product type by running a Delete call to http://localhost:5000/producttype{producttypeID}
-POST You can enter a new product type by running a Post call to http://localhost:5000/producttype
+**GET** You can access a list of all product types by running a Get call to http://localhost:5000/producttype.
+
+**GET** one. You can get the information on a single product type by running a Get call to http://localhost:5000/producttype/{producttypeID}.
+
+> Note: you need to have a product types unique ID number to get the correct information.
+
+**PUT** You can update the info on a specific product type by running a Put call to http://localhost:5000/producttype/{producttypeID}.	
+Running a put requires that you submit the entire object.
+
+Example: 
+ ```
+ 	{
+	 	"ProductTypeId" : "3",
+    	"CategoryName" : "Electronics"
+	}
+```
+
+**DELETE** You can delete a product type by running a Delete call to http://localhost:5000/producttype{producttypeID}.
+
+**POST** You can enter a new product type by running a Post call to http://localhost:5000/producttype
 You must put a name with a post.
-Example: {
+
+Example: 
+ ```
+ 	{
         "CategoryName": "Electronics"
-}
+	}
+```
 
 KM
 ##Payment Types
@@ -228,15 +242,41 @@ Example: {
     "EmployeeId": 2
 }
 
-Training Programs
-GET You can access a list of all training programs by running a Get call to http://localhost:5000/trainingprogram
-GET one. You can get the information on a single training program by runnning a Get call to http://localhost:5000/trainingprogram/{trainingprogramID}
+###Training Programs###
+
+**GET** You can access a list of all training programs by running a Get call to http://localhost:5000/trainingprogram.
+
+**GET** one. You can get the information on a single training program by runnning a Get call to http://localhost:5000/trainingprogram/{trainingprogramID}.
 Note you need to have a training program unique ID number to get the correct information
-PUT You can update the info on a specific training program by running a Put call to http://localhost:5000/trainingprogram/{trainingprogramID}
+
+**PUT** You can update the info on a specific training program by running a Put call to http://localhost:5000/trainingprogram/{trainingprogramID}.
 Running a Put requires that you submit the entire object.
-Example: { “trainingProgramName”:”JS OnBoarding”, "trainingProgramID": 1 "StartDate": "02-14-2018", "EndDate": "02-15-2018", "maxAttendees": 50 }
-DELETE You can delete a training program by running a Delete call to http://localhost:5000/trainingprogram{trainingprogramID}
-Note - you can only delete a training program if the current date is before the start date of a program. You cannot delete programs that have already happened.
-POST You can enter a new training program by running a Post call to http://localhost:5000/trainingProgram
+
+Example: 
+ ```
+ 	{ 
+		“trainingProgramName”:”JS OnBoarding”, 
+		"trainingProgramID": 1, 
+		"StartDate": "02-14-2018", 
+		"EndDate": "02-15-2018", 
+		"maxAttendees": 50 
+	}
+```
+
+**DELETE** You can delete a training program by running a Delete call to http://localhost:5000/trainingprogram{trainingprogramID}.
+
+> Note - you can only delete a training program if the current date is before the start date of a program. You cannot delete programs that have already started or that have already occurred.
+
+**POST** You can enter a new training program by running a Post call to http://localhost:5000/trainingProgram
 You must put a name, dateStart, dateEnd, and maxAttendees with a Post.
-Example: { “trainingProgramName”:”JS OnBoarding”, "trainingProgramID": 1 "StartDate": "02-14-2018", "EndDate": "02-15-2018", "maxAttendees": 50 }
+
+Example: 
+```
+	{ 
+		"trainingProgramID": 1,
+		“trainingProgramName”:”JS OnBoarding”,
+		"StartDate": "02-14-2018", 
+		"EndDate": "02-15-2018", 
+		"maxAttendees": 50 
+	}
+```
