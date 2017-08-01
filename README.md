@@ -1,20 +1,20 @@
 # Bangazon API
 This API will expose nine resources for client developers to consume for other application they want to write.
-	- The Customer resource at the URI of http://localhost:5000/api/Customer
-	- The Department Type resource at the URI of http://localhost:5000/api/DeptType
-	- The Product resource at the URI of http://localhost:5000/api/Product
-	- The Product Type resource at the URI of http://localhost:5000/api/producttype
-	- The Training Program resource at the URI of http://localhost:5000/api/trainingprogram
-	- The Computer resource at the URI of http://localhost:5000/api/computer
-	- The Employees resource at the URI of http://localhost:5000/api/employee
-	- The Order resource at the URI of http://localhost:5000/api/order
-	- The Payment resource at the URI of http://localhost:5000/api/payment
+* The Customer resource at the URI of http://localhost:5000/api/Customer
+* The Department Type resource at the URI of http://localhost:5000/api/DeptType
+* The Product resource at the URI of http://localhost:5000/api/Product
+* The Product Type resource at the URI of http://localhost:5000/api/producttype
+* The Training Program resource at the URI of http://localhost:5000/api/trainingprogram
+* The Computer resource at the URI of http://localhost:5000/api/computer
+* The Employees resource at the URI of http://localhost:5000/api/employee
+* The Order resource at the URI of http://localhost:5000/api/order
+* The Payment resource at the URI of http://localhost:5000/api/payment
 
 
 ### Installing Core Technologies
-- SQLite
-- For OSX Users `brew install sqlite`
-- Postman
+* SQLite
+* For OSX Users `brew install sqlite`
+* Postman
 
 ### For Windows Users
 Visit the SQLite downloads and download the 64-bit DLL (x64) for SQLite version, unzip and install it.
@@ -66,23 +66,31 @@ After cloning the repo and setting your environment variable, restore dependenci
 Then run the project, which will seed the database with a few customers.
 
 ### Installing Bangazon API
-As of now, the database is going to be hosted on your local computer. There are a few things you need to make sure are in place before the database can be up and running.
+As of now, the database is going to be hosted on your local computer. There are a few 
+things you need to make sure are in place before the database can be up and running.
+
 Fork and clone the repo on to you local machine.
-Run `dotnet restore`
-Run `dotnet ef migrations`
+`dotnet restore`
+`dotnet ef migrations`
 This will create all the migrations needed for Entity Framework to post items to the database based on the models in the Models/ directory
-run `dotnet ef database update`
+
+Run `dotnet ef database update`
 Run `dotnet run`
-This will compile and run everything as well as initialize the database with some data to get started
-Using the API
-For now, all calls to the API will be made from (http://localhost:5000) as the domain. All calls will be made from here.
-EX you can get a list of all the customers by making a get call to (http://localhost:5000/customer)
+> This will compile and run everything as well as initialize the database with some data to get started
+
+####Using the API
+For now, all calls to the API will be made from (http://localhost:5000) as the domain.
+
+```
+Example:
+You can get a list of all the customers by making a GET call to: (http://localhost:5000/customer)
+```
 
 ## Steps for Testing the API
 Open Postman
 Open SQL Browser. Use this command in the terminal: `open bangazon.db`
 
-### Customers
+## Customers
 
 **GET Customers** 
 You can access a list of all customers by running a Get call to (http://localhost:5000/customer)
@@ -126,20 +134,17 @@ In the Product Resource, you will be able to **GET**, **POST**, **PUT**, **DELET
 
 > NOTE In order to successfully use **GET**, you must first add a product using **POST**
 
-**GET** 
-GET will give access to the entire list of products
+**GET** will give access to the entire list of products
 * Open Postman 
 * Select GET
 * URL: http://localhost:5000/product
 
-**GET** 
-GET will give access to a single product by ID
+**GET** will give access to a single product by ID
 * Open Postman 
 * Select GET
 * URL: http://localhost:5000/product/{productID}
 
-**POST** 
-POST will allow you to add a product
+**POST** will allow you to add a product
 * Open Postman 
 * Select POST
 * URL: http://localhost:5000/product
@@ -156,8 +161,7 @@ Example:
 	}
 ```
 
-**PUT** 
-PUT will allow you to update a specific product by ID
+**PUT** will allow you to update a specific product by ID
 * Open Postman 
 * Select PUT
 * URL: http://localhost:5000/product/{productID}
@@ -183,7 +187,7 @@ PUT will allow you to update a specific product by ID
 * URL: http://localhost:5000/product/{productID}
 
 
-### Product Types
+## Product Types
 
 **GET** 
 You can access a list of all product types by running a Get call to http://localhost:5000/producttype.
@@ -395,26 +399,23 @@ You must put a name and expenseBudget with a Post.
   		}
 ```
 
-##Computer Resource by Jackie
+## Computer Resource by Jackie
 
 In the Computer Resource, you will be able to **GET** **POST** **PUT** **DELETE** computer data in the database.
 
 > Note: In order to successfully use **GET**, you must first add a computer using **POST**
 
-**GET** 
-GET will give access to the entire list of computers
+**GET** will give access to the entire list of computers
 * Open Postman 
 * Select GET
 * URL: http://localhost:5000/computer
 
-**GET** 
-GET will give access to a single computer by ID
+**GET** will give access to a single computer by ID
 * Open Postman 
 * Select GET
 * URL: http://localhost:5000/computer/{computerID}
 
-**POST** 
-POST will allow you to add a computer
+**POST** will allow you to add a computer
 * Open Postman 
 * Select POST
 * URL: http://localhost:5000/computer
@@ -428,8 +429,7 @@ Example for using POST:
 	}
 ```
 
-**PUT** 
-PUT will allow you to update a specific computer by ID
+**PUT** will allow you to update a specific computer by ID
 * Open Postman 
 * Select PUT
 * URL: http://localhost:5000/computer/{computerID}
@@ -445,14 +445,13 @@ Example for using PUT:
 	}
 ```
 
-**DELETE** 
-DELETE will allow you to delete a specific computer by ID
+**DELETE** will allow you to delete a specific computer by ID
 * Open Postman 
 * Select DELETE
 * URL: http://localhost:5000/computer/{computerID}
 
 
-### Training Programs
+## Training Programs
 
 **GET** 
 You can access a list of all training programs by running a Get call to http://localhost:5000/trainingprogram.
@@ -495,3 +494,9 @@ Example:
 		"maxAttendees": 50 
 	}
 ```
+## Collaboraters
+* Krissy
+* Kyle
+* Preeti
+* Kevin
+* Jackie
