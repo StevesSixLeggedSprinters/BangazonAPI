@@ -20,6 +20,7 @@ namespace BangazonAPI.Data
 
         public DbSet<Product> Products { get; set; } //jk-setting up a relationship between the database and the products table
 
+         public DbSet<Employee> Employees { get; set; } //kc- creating the relationship to the db and controller for employee
         public DbSet<Computer> Computers { get; set; } //jk-Here I am setting up a relationship between the Computer table and the database
 
         public DbSet<TrainingProgram> TrainingPrograms { get; set; }
