@@ -159,18 +159,18 @@ Example: {
 * GET : The HTTP GET method is used to **read** (or retrieve) a representation of a resource. You can access a list of all orders by sending a Get call to `http://localhost:5000/order`
 
 ### You need a order unique Id number to get the information
-* GET one. You can get the information for a  single order by sending a Get call to `http://localhost:5000/order/{OrderId}`
+* GET one. You can get the information for a  single order by sending a Get call to `http://localhost:5000/order/``{OrderId}`
 * GET one will return JSON containing the order details and  an array of products added to that order
 
 
 * PUT is most-often utilized for **update** capabilities, You can update the information on a specific order by sending a Put call to `http://localhost:5000/order/{OrderId}`
     * Put requires to submit below object:
-    * Example: `{"OrderId": 1,"PaytypeId": 1, "DateOrdered": "08-01-2017", "customerId": 1 }`
+    * Example: ```{"OrderId": 1,"PaytypeId": 1, "DateOrdered": "08-01-2017", "customerId": 1 }```
 
 * POST is used to create subordinate resources. When creating a new resource, You can add a new  order by sending a Post call to `http://localhost:5000/order/`
     * You need to include `DateOdered` `PaytypeId` and `customerId` in the body of the POST to enter a new order by sending a Post call to `http://localhost:5000/order`
     * The DateCreate field is auto-generated with the current date.
-    * Example: `{"DateOrdered": "07-31-17","PaytypeId": 1,"customerId":1}`
+    * Example: ```{"DateOrdered": "07-31-17","PaytypeId": 1,"customerId":1}```
 
 * DELETE used to **delete** a resource identified by a URI. You can delete an order by sending a Delete call to `http://localhost:5000/order/{OrderId}`
 
