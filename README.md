@@ -1,4 +1,3 @@
-<!--Kc-Added-->
 #Bangazon API
 Based on the Bangazon command line application that you have worked on during orientation, this API will expose ten resources for client developers to consume for other application they want to write.
 	- The Customer resource at the URI of http://localhost:5000/api/Customer
@@ -21,7 +20,6 @@ Then run the project, which will seed the database with a few children, a few to
 - SQLite
 - For OSX Users `brew install sqlite`
 
-<!--KC-added-->
 ## For Windows Users
 
 	Visit the SQLite downloads and download the 64-bit DLL (x64) for SQLite version, unzip and install it.
@@ -49,7 +47,6 @@ Then run the project, which will seed the database with a few children, a few to
 ## Installing Bangazon API
 	As of now, the database is going to be hosted on your local computer. There are a few things you need to make sure are in place before the database can be up and running.
 	Fork and clone the repo on to you local machine.
-<!-- KC-added -->
 	Run `dotnet restore`
 	Run `dotnet ef migrations`
 	This will create all the migrations needed for Entity Framework to post items to the database based on the models in the Models/ directory
