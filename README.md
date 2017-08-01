@@ -86,35 +86,62 @@ POST You can post a new customer by running a Post call to http://localhost:5000
  "LastInteraction":"07/02/17",
 "IsActive":"1"
 }
-Products
-GET You can access a list of all products by running a Get call to http://localhost:5000/product
-GET one. You can get the information on a single product by runnning a Get call to http://localhost:5000/product/{productID}
-Note you need to have a products unique ID number to get the correct information
-PUT You can update the info on a specific product by running a Put call to http://localhost:5000/product/{productID}
-The Put must send in the complete object which will include a productID, title, description, price, productTypeID, customerID.
-Example:Example:
-{
-        "ProductTypeId": 4,
-	"Price": 11.00,
-	"Title": "Pizza",
-	"Description": "A giant slice of delicious pizza from Joey's.",
-	"CustomerId": 1,
-	"ProductAmount": 1,
-}
+##Product Resource by Jackie
 
-Note you need to have a product, customer and productType unique IDs number to put correctly
-DELETE You can delete a product by running a Delete call to http://localhost:5000/product{productID}
-POST You can add a product by running a Post call to http://localhost:5000/product
-You must submit a ProductTypeID, Price, Title, Description and CustomerID.
-Example:Example:
-{
-        "ProductTypeId": 4,
-	"Price": 11.00,
-	"Title": "Pizza",
-	"Description": "A giant slice of delicious pizza from Joey's.",
-	"CustomerId": 1,
-	"ProductAmount": 1,
-}
+In the Product Resource, you will be able to **GET** **POST** **PUT** **DELETE** product data in the database.
+
+*NOTE* In order to successfully use **GET**, you must first add a product using **POST**
+
+**GET** will give access to the entire list of products
+* Open Postman 
+* Select GET
+* URL: http://localhost:5000/product
+
+**GET** will give access to a single product by ID
+* Open Postman 
+* Select GET
+* URL: http://localhost:5000/product/{productID}
+
+**POST** will allow you to add a product
+* Open Postman 
+* Select POST
+* URL: http://localhost:5000/product
+
+```
+Example for using POST:
+	{ 
+	  "ProductTypeId": 2,
+	  "DateProductAdded": "08-01-2017",
+	  "CustomerId": 3,
+	  "Price": 2.00,
+	  "Title": "Cup",
+	  "Description": "A cup to hold liquids.",
+	}
+```
+
+**PUT** will allow you to update a specific product by ID
+* Open Postman 
+* Select PUT
+* URL: http://localhost:5000/product/{productID}
+> Running a PUT will require that you submit the entire object and have the ID specific to the product you want to update in the object, as well as in the URL.
+
+```
+Example for using PUT:
+	{ 
+	  "ProductId": 1,
+	  "ProductTypeId": 2,
+	  "DateProductAdded": "08-01-2017",
+	  "CustomerId": 3,
+	  "Price": 5.00,
+	  "Title": "Cup",
+	  "Description": "A plastic container to hold liquids.",
+	}
+```
+
+**DELETE** will allow you to delete a specific product by ID
+* Open Postman 
+* Select DELETE
+* URL: http://localhost:5000/product/{productID}
 
 
 ###Product Types###
@@ -297,6 +324,74 @@ KM
 Note you need to have a department unique ID number to get the correct information
 **PUT** You can update the info on a specific department by running a Put call to http://localhost:5000/deptType/{deptTypeId}
 Running a Put requires that you submit the entire object.
+
+Example: 
+{
+    "DeptTypeId":"1",
+    "DeptName":"IT",
+    "ExpBudget":"3mil"
+}
+
+POST You can enter a new payment type by running a Post call to http://localhost:5000/deptType
+You must put a name and expenseBudget with a Post.
+Example: 
+  {
+    "DeptTypeId":"1",
+    "DeptName":"IT",
+    "ExpBudget":"3mil"
+  }
+
+##Computer Resource by Jackie
+
+In the Computer Resource, you will be able to **GET** **POST** **PUT** **DELETE** computer data in the database.
+
+*NOTE* In order to successfully use **GET**, you must first add a computer using **POST**
+
+**GET** will give access to the entire list of computers
+* Open Postman 
+* Select GET
+* URL: http://localhost:5000/computer
+
+**GET** will give access to a single computer by ID
+* Open Postman 
+* Select GET
+* URL: http://localhost:5000/computer/{computerID}
+
+**POST** will allow you to add a computer
+* Open Postman 
+* Select POST
+* URL: http://localhost:5000/computer
+
+```
+Example for using POST:
+	{  
+	  "PurchaseDate": "08-01-2017",
+	  "DecommissionDate": "10-11-2017",
+	  "EmployeeId": 2
+	}
+```
+
+**PUT** will allow you to update a specific computer by ID
+* Open Postman 
+* Select PUT
+* URL: http://localhost:5000/computer/{computerID}
+> Running a PUT will require that you submit the entire object and have the ID specific to the computer you want to update in the object, as well as in the URL.
+
+```
+Example for using PUT:
+	{ 
+	  "ComputerId": 1, 
+	  "PurchaseDate": "08-01-2017",
+	  "DecommissionDate": "10-11-2017",
+	  "EmployeeId": 2
+	}
+```
+
+**DELETE** will allow you to delete a specific computer by ID
+* Open Postman 
+* Select DELETE
+* URL: http://localhost:5000/computer/{computerID}
+=======
 Example: {"DeptTypeId":"1", "DeptName":"IT", "ExpBudget":"3mil"}
 **POST** You can enter a new payment type by running a Post call to http://localhost:5000/deptType
 You must enter DeptName
