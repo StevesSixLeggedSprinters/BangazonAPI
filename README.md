@@ -118,16 +118,19 @@ Example:Example:
 **GET** You can access a list of all product types by running a Get call to http://localhost:5000/producttype.
 
 **GET** one. You can get the information on a single product type by running a Get call to http://localhost:5000/producttype/{producttypeID}.
-Note: you need to have a product types unique ID number to get the correct information.
+
+> Note: you need to have a product types unique ID number to get the correct information.
 
 **PUT** You can update the info on a specific product type by running a Put call to http://localhost:5000/producttype/{producttypeID}.	
 Running a put requires that you submit the entire object.
 
 Example: 
- ```{
+ ```
+ 	{
 	 	"ProductTypeId" : "3",
     	"CategoryName" : "Electronics"
-	}```
+	}
+```
 
 **DELETE** You can delete a product type by running a Delete call to http://localhost:5000/producttype{producttypeID}.
 
@@ -135,9 +138,11 @@ Example:
 You must put a name with a post.
 
 Example: 
- ```{
+ ```
+ 	{
         "CategoryName": "Electronics"
 	}
+```
 
 Payment Types
 GET You can access a list of all payment types by running a Get call to http://localhost:5000/paymenttype
@@ -257,26 +262,30 @@ Note you need to have a training program unique ID number to get the correct inf
 Running a Put requires that you submit the entire object.
 
 Example: 
- ```{ 
-	“trainingProgramName”:”JS OnBoarding”, 
-	"trainingProgramID": 1, 
-	"StartDate": "02-14-2018", 
-	"EndDate": "02-15-2018", 
-	"maxAttendees": 50 
-	}```
+ ```
+ 	{ 
+		“trainingProgramName”:”JS OnBoarding”, 
+		"trainingProgramID": 1, 
+		"StartDate": "02-14-2018", 
+		"EndDate": "02-15-2018", 
+		"maxAttendees": 50 
+	}
+```
 
 **DELETE** You can delete a training program by running a Delete call to http://localhost:5000/trainingprogram{trainingprogramID}.
 
-Note - you can only delete a training program if the current date is before the start date of a program. You cannot delete programs that have already started or that have already occurred.
+> Note - you can only delete a training program if the current date is before the start date of a program. You cannot delete programs that have already started or that have already occurred.
 
 **POST** You can enter a new training program by running a Post call to http://localhost:5000/trainingProgram
 You must put a name, dateStart, dateEnd, and maxAttendees with a Post.
 
 Example: 
-```{ 
-	“trainingProgramName”:”JS OnBoarding”,
-	"trainingProgramID": 1,
-	"StartDate": "02-14-2018", 
-	"EndDate": "02-15-2018", 
-	"maxAttendees": 50 
-	}```
+```
+	{ 
+		"trainingProgramID": 1,
+		“trainingProgramName”:”JS OnBoarding”,
+		"StartDate": "02-14-2018", 
+		"EndDate": "02-15-2018", 
+		"maxAttendees": 50 
+	}
+```
